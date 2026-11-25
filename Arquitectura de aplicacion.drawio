@@ -1,0 +1,70 @@
+<mxfile host="Electron">
+  <diagram name="Página-1" id="xVyMkx1bWMkkC-trnMI1">
+    <mxGraphModel dx="1096" dy="753" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-1" parent="1" style="shape=datastore;whiteSpace=wrap;html=1;" value="Base de datos&lt;div&gt;( PostgreSQL)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="110" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-2" parent="1" style="shape=datastore;whiteSpace=wrap;html=1;" value="R2&lt;div&gt;(Bucket R2)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="490" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-4" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="120" width="120" x="300" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Web API en C#" vertex="1">
+          <mxGeometry height="30" width="110" x="300" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-9" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="180" y="470" as="sourcePoint" />
+            <mxPoint x="290" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-10" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="300" y="430" as="sourcePoint" />
+            <mxPoint x="240" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-11" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="490" y="470" as="sourcePoint" />
+            <mxPoint x="430" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-12" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="450" y="400" as="sourcePoint" />
+            <mxPoint x="520" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-13" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="120" width="120" x="630" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Aplicación cliente Angular" vertex="1">
+          <mxGeometry height="30" width="110" x="630" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-16" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=-0.033;entryY=0.825;entryDx=0;entryDy=0;entryPerimeter=0;" target="fQhrFSwO3bqD0K_qyDBX-13" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="480" y="290" as="sourcePoint" />
+            <mxPoint x="580" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-18" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="610" y="200" as="sourcePoint" />
+            <mxPoint x="450" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-20" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=-30;" value="HTPP" vertex="1">
+          <mxGeometry height="10" width="100" x="480.67" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="fQhrFSwO3bqD0K_qyDBX-21" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" value="Almacenamiento de archivos en la nube" vertex="1">
+          <mxGeometry height="70" width="150" x="490" y="560" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
