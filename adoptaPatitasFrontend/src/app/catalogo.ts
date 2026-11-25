@@ -11,31 +11,39 @@ import { edad, etiquetaEstado, Feedback, Foto, Tarjeta, Vista } from './ui';
     @if (inicio) {
       <section class="hero">
         <div class="shell hero-layout">
-          <div>
+          <div class="hero-copy">
             <p class="eyebrow">Adopción responsable</p>
             <h1>Un hogar empieza con un <em>encuentro.</em></h1>
             <p>Conoce a los perros que esperan una familia. Si alguno te roba el corazón, puedes enviar una solicitud a quien lo cuida.</p>
-            <a class="button" routerLink="/perros">Conocer a los perros <span aria-hidden="true">↗</span></a>
+            <a class="button" routerLink="/perros">Conocer a los perros</a>
           </div>
-          <div class="hero-art">
-            @if (portada(); as perro) {
+          @if (portada(); as perro) {
+            <div class="hero-art">
               <app-foto [url]="perro.fotos[0]" [alt]="'Foto de ' + perro.nombre" />
-            } @else { <span aria-hidden="true">🐾</span><i></i> }
-          </div>
+            </div>
+          }
+        </div>
+      </section>
+    } @else {
+      <section class="catalog-band" aria-labelledby="listado">
+        <div class="shell">
+          <h1 id="listado">Perros en adopción</h1>
+          <form class="filters" [formGroup]="filtros" (ngSubmit)="consultar()">
+            <label>Nombre, raza o descripción <input type="search" formControlName="busqueda"></label>
+            <label>Tamaño <select formControlName="tamano"><option value="">Todos</option>@for (t of tamanos; track t) { <option>{{ t }}</option> }</select></label>
+            <label>Sexo <select formControlName="sexo"><option value="">Todos</option>@for (s of sexos; track s) { <option>{{ s }}</option> }</select></label>
+            <button [disabled]="cargando()">Buscar</button>
+            <button class="secondary" type="button" [disabled]="cargando()" (click)="filtros.reset(); consultar()">Limpiar</button>
+          </form>
         </div>
       </section>
     }
-    <section class="shell section" aria-labelledby="listado">
-      @if (inicio) { <h2 id="listado">Perros que esperan hogar</h2> }
-      @else {
-        <h1 id="listado">Perros en adopción</h1>
-        <form class="filters" [formGroup]="filtros" (ngSubmit)="consultar()">
-          <label>Nombre, raza o descripción <input type="search" formControlName="busqueda"></label>
-          <label>Tamaño <select formControlName="tamano"><option value="">Todos</option>@for (t of tamanos; track t) { <option>{{ t }}</option> }</select></label>
-          <label>Sexo <select formControlName="sexo"><option value="">Todos</option>@for (s of sexos; track s) { <option>{{ s }}</option> }</select></label>
-          <button [disabled]="cargando()">Buscar</button>
-          <button class="secondary" type="button" [disabled]="cargando()" (click)="filtros.reset(); consultar()">Limpiar</button>
-        </form>
+    <section class="shell section" [class.featured]="inicio" [class.catalog-results]="!inicio" aria-labelledby="listado">
+      @if (inicio) {
+        <div class="section-top">
+          <h2 class="section-heading" id="listado">Perros que esperan hogar</h2>
+          @if (perros().length) { <a class="ghost" routerLink="/perros">Ver todo el catálogo</a> }
+        </div>
       }
       <app-feedback [cargando]="cargando()" [error]="error()" />
       @if (error()) { <button class="secondary" (click)="consultar()">Reintentar</button> }
@@ -45,7 +53,6 @@ import { edad, etiquetaEstado, Feedback, Foto, Tarjeta, Vista } from './ui';
       <div class="cards">
         @for (perro of perros(); track perro.id) { <app-ficha [perro]="perro" /> }
       </div>
-      @if (inicio && perros().length) { <p><a routerLink="/perros">Ver todo el catálogo →</a></p> }
     </section>
   `
 })
@@ -71,7 +78,7 @@ export class Catalogo extends Vista implements OnInit {
   imports: [ReactiveFormsModule, RouterLink, Feedback, Foto],
   template: `
     <section class="shell section">
-      <a routerLink="/perros">← Perros en adopción</a>
+      <a class="back-link" routerLink="/perros">← Perros en adopción</a>
       <app-feedback [cargando]="cargando()" [error]="error()" [aviso]="aviso()" />
       @if (error() && !perro()) { <button class="secondary" (click)="consultar()">Reintentar</button> }
       @if (perro(); as ficha) {
@@ -81,7 +88,7 @@ export class Catalogo extends Vista implements OnInit {
             @if (ficha.fotos.length > 1) {
               <div class="actions" aria-label="Elegir foto">
                 @for (foto of ficha.fotos; track $index) {
-                  <button class="secondary" [attr.aria-pressed]="indice() === $index" (click)="indice.set($index)">Foto {{ $index + 1 }}</button>
+                  <button class="secondary photo-choice" [attr.aria-pressed]="indice() === $index" (click)="indice.set($index)">Foto {{ $index + 1 }}</button>
                 }
               </div>
             }

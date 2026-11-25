@@ -10,7 +10,7 @@ import { Feedback, Vista } from './ui';
     <article class="panel">
       <h2>{{ persona().nombre }}</h2>
       <p>{{ persona().correo }} @if (persona().telefono) { · {{ persona().telefono }} }</p>
-      <form [formGroup]="form" (ngSubmit)="guardar()">
+      <form class="form" [formGroup]="form" (ngSubmit)="guardar()">
         <fieldset>
           <legend>Roles</legend>
           @for (rol of roles; track rol) {
@@ -43,9 +43,11 @@ export class Permisos implements OnInit {
 @Component({
   imports: [Feedback, Permisos],
   template: `
-    <h1>Administrar usuarios</h1>
+    <header class="page-tools">
+      <h1>Administrar usuarios</h1>
+      <button class="secondary" [disabled]="cargando() || ocupado()" (click)="consultar()">Actualizar</button>
+    </header>
     <app-feedback [cargando]="cargando()" [error]="error()" [aviso]="aviso()" />
-    <button class="secondary" [disabled]="cargando() || ocupado()" (click)="consultar()">Actualizar</button>
     @if (!cargando() && !error() && !usuarios().length) { <p class="notice">No hay usuarios para mostrar.</p> }
     <div class="stack">
       @for (persona of usuarios(); track persona) {

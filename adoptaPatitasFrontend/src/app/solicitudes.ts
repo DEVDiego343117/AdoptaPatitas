@@ -7,16 +7,18 @@ import { Feedback, Foto, Vista } from './ui';
 @Component({
   imports: [Feedback, Foto, DatePipe],
   template: `
-    <h1>{{ recibidas ? 'Solicitudes recibidas' : 'Mis solicitudes' }}</h1>
+    <header class="page-tools">
+      <h1>{{ recibidas ? 'Solicitudes recibidas' : 'Mis solicitudes' }}</h1>
+      <button class="secondary" [disabled]="cargando() || ocupado()" (click)="consultar()">Actualizar</button>
+    </header>
     <app-feedback [cargando]="cargando()" [error]="error()" [aviso]="aviso()" />
-    <button class="secondary" [disabled]="cargando() || ocupado()" (click)="consultar()">Actualizar</button>
     @if (!cargando() && !error() && !filas().length) { <p class="notice">Todavía no hay solicitudes.</p> }
     <div class="stack">
       @for (fila of filas(); track fila.id) {
         <article class="panel request">
           <app-foto [url]="fila.fotos[0]" [alt]="'Foto de ' + fila.perro" />
           <div>
-            <p class="meta">{{ fila.estado }} · {{ fila.fechaCreacion | date:'dd/MM/yyyy' }}</p>
+            <p class="request-meta"><span class="status-pill" [attr.data-status]="fila.estado">{{ fila.estado }}</span> {{ fila.fechaCreacion | date:'dd/MM/yyyy' }}</p>
             <h2>{{ fila.perro }}</h2>
             @if (contacto(fila); as persona) {
               <p>{{ persona.nombre }} · {{ persona.correo }} @if (persona.telefono) { · {{ persona.telefono }} }</p>

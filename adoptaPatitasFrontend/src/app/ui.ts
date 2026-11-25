@@ -48,7 +48,7 @@ export const etiquetaEstado = (estado: string) => estado === 'NoDisponible' ? 'N
     <div class="photo">
       @if (url() && fallo() !== url()) {
         <img [src]="url()" [alt]="alt()" loading="lazy" (error)="fallo.set(url())">
-      } @else { <div class="photo-empty"><span aria-hidden="true">🐾</span><small>Sin foto disponible</small></div> }
+      } @else { <div class="photo-empty"><small>Sin foto disponible</small></div> }
     </div>
   `
 })

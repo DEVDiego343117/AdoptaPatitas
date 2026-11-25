@@ -7,18 +7,20 @@ import { etiquetaEstado, Feedback, Foto, Tarjeta, Vista } from './ui';
 @Component({
   imports: [Feedback, RouterLink, Tarjeta],
   template: `
-    <h1>{{ todas ? 'Administrar perros' : 'Mis publicaciones' }}</h1>
-    <div class="actions">
-      <a class="button" routerLink="/cuenta/publicaciones/nueva">Publicar un perro</a>
-      <button class="secondary" [disabled]="cargando()" (click)="consultar()">Actualizar</button>
-    </div>
+    <header class="page-tools">
+      <h1>{{ todas ? 'Administrar perros' : 'Mis publicaciones' }}</h1>
+      <div class="actions">
+        <a class="button" routerLink="/cuenta/publicaciones/nueva">Publicar un perro</a>
+        <button class="secondary" [disabled]="cargando()" (click)="consultar()">Actualizar</button>
+      </div>
+    </header>
     <app-feedback [cargando]="cargando()" [error]="error()" [aviso]="aviso()" />
     @if (!cargando() && !error() && !perros().length) { <p class="notice">Todavía no hay publicaciones.</p> }
     <div class="cards">
       @for (perro of perros(); track perro.id) {
         <app-ficha [perro]="perro">
-          <p class="meta">{{ estado(perro.estado) }}</p>
-          <a [routerLink]="['/cuenta/publicaciones', perro.id, 'editar']">Editar publicación →</a>
+          <p><span class="status-pill" [attr.data-status]="perro.estado">{{ estado(perro.estado) }}</span></p>
+          <a class="ghost card-action" [routerLink]="['/cuenta/publicaciones', perro.id, 'editar']">Editar publicación</a>
         </app-ficha>
       }
     </div>
@@ -38,7 +40,7 @@ export class Publicaciones extends Vista {
 @Component({
   imports: [ReactiveFormsModule, RouterLink, Feedback, Foto],
   template: `
-    <a [routerLink]="volver()">← Volver a publicaciones</a>
+    <a class="back-link" [routerLink]="volver()">← Volver a publicaciones</a>
     <h1>{{ id ? 'Editar publicación' : 'Publicar un perro' }}</h1>
     <app-feedback [cargando]="cargando()" [error]="error()" [aviso]="aviso()" />
     @if (id && !perro() && error()) { <button class="secondary" (click)="consultar()">Reintentar</button> }
@@ -66,7 +68,7 @@ export class Publicaciones extends Vista {
           <h2>Fotos de {{ ficha.nombre }}</h2>
           <div class="cards">
             @for (foto of ficha.fotos; track $index) {
-              <div>
+              <div class="photo-tools">
                 <app-foto [url]="foto" [alt]="'Foto ' + ($index + 1) + ' de ' + ficha.nombre" />
                 <button class="secondary" [disabled]="ocupado() || cargando()" (click)="quitar($index)">Eliminar foto {{ $index + 1 }}</button>
               </div>

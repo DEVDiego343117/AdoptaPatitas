@@ -6,7 +6,8 @@ import { Feedback, Vista } from './ui';
 @Component({
   imports: [ReactiveFormsModule, RouterLink, Feedback],
   template: `
-    <section class="shell section narrow">
+    <section class="access-band">
+      <div class="shell section narrow access-content">
       <h1>{{ registro ? 'Crear cuenta' : 'Iniciar sesión' }}</h1>
       <app-feedback [error]="error()" />
       <form class="panel form" [formGroup]="form" (ngSubmit)="enviar()">
@@ -26,8 +27,9 @@ import { Feedback, Vista } from './ui';
         @if (form.touched && form.invalid) { <p class="hint">Completa los campos obligatorios y revisa sus límites.</p> }
         <button [disabled]="ocupado()">{{ ocupado() ? 'Enviando…' : registro ? 'Crear cuenta' : 'Entrar' }}</button>
       </form>
-      @if (registro) { <p>¿Ya tienes cuenta? <a routerLink="/entrar" queryParamsHandling="preserve">Inicia sesión</a>.</p> }
-      @else { <p>¿Primera vez aquí? <a routerLink="/registro" queryParamsHandling="preserve">Crea una cuenta</a>.</p> }
+      @if (registro) { <p class="access-switch">¿Ya tienes cuenta? <a routerLink="/entrar" queryParamsHandling="preserve">Inicia sesión</a>.</p> }
+      @else { <p class="access-switch">¿Primera vez aquí? <a routerLink="/registro" queryParamsHandling="preserve">Crea una cuenta</a>.</p> }
+      </div>
     </section>
   `
 })
